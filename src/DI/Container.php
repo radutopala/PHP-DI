@@ -311,4 +311,32 @@ class Container implements ArrayAccess
 	private final function __clone() {
 	}
 
+	/**
+	 * Returns the namespace of the caller
+	 * @return string
+	 */
+	private function getCallerNamespace() {
+		$namespace = '';
+		// Most optimized debug_backtrace call possible
+		$options = defined("DEBUG_BACKTRACE_IGNORE_ARGS") ? DEBUG_BACKTRACE_IGNORE_ARGS : false;
+		$trace = debug_backtrace($options, 2);
+		if (isset($trace[2]['class'])) {
+			$namespace = $this->getNamespaceFromClassName($trace[1]['class']);
+		}
+		return $namespace;
+	}
+
+	/**
+	 * Return the namespace of a class.
+	 * @param string $classname
+	 * @return string
+	 */
+	private function getNamespaceFromClassName($classname) {
+		$namespace = '';
+		if (strpos($classname, '\\') !== false) {
+			$namespace = strrev(substr(strrev($classname), strpos(strrev($classname), '\\') + 1));
+		}
+		return $namespace;
+	}
+
 }
