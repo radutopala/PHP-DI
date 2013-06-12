@@ -1,5 +1,5 @@
 {
-    "name": "mnapoli/php-di",
+    "name": "radutopala/mnapoli-php-di",
     "type": "library",
     "description": "PHP-DI is a Container that makes Dependency Injection as practical as possible in PHP",
     "keywords": ["di", "dependency injection", "container"],
@@ -14,8 +14,6 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "doctrine/annotations": "1.*",
-        "doctrine/cache": "1.*",
         "myclabs/php-enum": "1.*",
         "symfony/yaml": "2.*"
     }
